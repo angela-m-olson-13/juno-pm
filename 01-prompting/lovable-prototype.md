@@ -14,11 +14,11 @@ _____
 ## What it demonstrates
 
 _The one flow this prototype proves._
-
+With direct, deterministic directions, a prototype can be easily built.
 _____
 
 ## Debrief
 
-- **What worked:** _____
-- **What broke / felt like a toy:** _____
-- **What I'd change next pass:** _____
+- **What worked:** _____  Running the prototype through a simple test script
+- **What broke / felt like a toy:** _____  Did not like placement of process transcript button so changed placement.
+- **What I'd change next pass:** _____ Do more work with palette for readability

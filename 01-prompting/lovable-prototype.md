@@ -5,7 +5,7 @@
 ## Prototype link
 
 _The public Lovable share URL._
-
+https://lovable.dev/projects/6aa7a44f-2b9a-4b3c-8fe2-ca1ab6465193?magic_link=mc_45a2640f-7cfc-4c13-830b-db4286401f67
 _____
 
 ## What it demonstrates

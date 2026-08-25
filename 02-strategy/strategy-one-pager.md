@@ -4,13 +4,13 @@
 
 The Problem: roadmap discussions at RocketShip are driven by the loudest voice in Slack rather than customer evidence. Priorities reverse weekly; stakeholder trust is eroding.
 
-Prevention: Juno explicitly prevents 'opinion-driven prioritization' - the bad decision of moving a feature up the backlog because someone in #leadership posted strongly, instead of because the cited evidence outweighs the alternatives.
+Prevention: Juno explicitly prevents 'opinion-driven prioritization' - the bad decision of moving a feature up the backlog because someone in leadership posted strongly, instead of because the cited evidence outweighs the alternatives.
 
 ## 2. Target Metrics
 
 Cycle time: reduce average weekly roadmap prioritization from 2 hours to 30 minutes (75% reduction).
 
-Leadership proof: under-10% rate of decisions reversed within 1 week, AND 90%+ of prioritised items have at least 2 cited sources from the corpus. Both metrics measurable in the first 30 days post-launch.
+Leadership proof: under-15% rate of decisions reversed within 2 weeks, AND 90%+ of prioritised items have at least 2 cited sources from the corpus. Both metrics measurable in the first 30 days post-launch.
 
 ## 3. Autonomy Level
 

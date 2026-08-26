@@ -33,19 +33,19 @@ _____
 ## Diagnostic Diff 
 
 Lovable prototype URL (after RAG)
--https://lovable.dev/projects/6aa7a44f-2b9a-4b3c-8fe2-ca1ab6465193 _
+https://lovable.dev/projects/6aa7a44f-2b9a-4b3c-8fe2-ca1ab6465193 
 
 Quality Mode, top 3 priorities (no strategy)
--P1 - Quarterly Reports CSV Export Timeout & Silent Failure_
--P2 - Navigation Bar Visual Brightness & Contrast Strain_
--P3 - Application Wide Dark Mode Support_
+-P1 - Quarterly Reports CSV Export Timeout & Silent Failure
+-P2 - Navigation Bar Visual Brightness & Contrast Strain
+-P3 - Application Wide Dark Mode Support
 
 Strategy Mode, top 3 priorities (with strategy)
--P0 - Quarterly Report CSV Export Crash & Timeout_
--P2 - PDF Generation & Baseline Stability_
--Rest are explicitly out of scope_ 
+-P0 - Quarterly Report CSV Export Crash & Timeout
+-P2 - PDF Generation & Baseline Stability
+-Rest are explicitly out of scope
 
 One-line takeaway you’ll never forget
--RAG contained the results within guardrails that actually make sense for the product_
+-RAG contained the results within guardrails that actually make sense for the product
 
 _____

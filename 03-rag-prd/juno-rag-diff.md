@@ -4,6 +4,8 @@ _Working notes from Module 3 Lab 1. Do not paste over `03-rag-prd/prd.md`. That 
 
 **Lovable prototype:** https://lovable.dev/projects/6aa7a44f-2b9a-4b3c-8fe2-ca1ab6465193
 
+**Lovable prototype (invite link):** https://lovable.dev/projects/6aa7a44f-2b9a-4b3c-8fe2-ca1ab6465193?magic_link=mc_e9445747-67b6-4bc7-834c-841cdb3cee47 
+
 ### Before - Quality Mode (no strategy)
 
 P1 - Quarterly Reports CSV Export Timeout & Silent Failure

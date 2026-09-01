@@ -1,27 +1,32 @@
 # Agent Control Panel · Juno
 
-> Module 5 · Agentic Workflows. The operator's control surface for Juno, from the **M5 · Agent Control Panel**. Paste the tool's markdown over this file.
-
 ## Autonomy level
 
-_Shadow · assisted · supervised · bounded-autonomous · autonomous, and why._
-
-_____
+Agent can draft a P0 risk summary and Jira stub.  Agent cannot auto-close threads or direct message customers.
 
 ## Controls
 
-- **Kill switch:** _how to stop it._
-- **Rate / cost caps:** _the ceilings._
-- **Escalate-on-stuck:** _when it hands back to a human._
+- **Kill switch:** max_steps: 6.  Abort if same tool fails 2x in a row.  Hard timeout:  90 seconds wall clock
+- **Rate / cost caps:** corpus.retrieve -> {chunks:{{text, source, score}], summary, confidence}.
+salesforce.lookup_arr -> {arr_usd, contract_end, churn_risk}.
+- **Escalate-on-stuck:** After 3 failed retrievals -> degrade to 'cautious mode' (no priorities - just thread links).  After 2 tool errors -> escalate to PM with full trace.
 
 ## Monitoring
 
-_The signals and dashboards the operator watches._
+**Confidence thresholds (map to actions):**
 
-_____
+>= 80% -> auto-post to #pm-daily.  70 to 79% -> post to #pm-juno-review with @on-call-pm.  <70% -> require PM approval.
+
+**Checkpoints:**
+
+Any thread mentioning 'churn', 'legal', or 'security' -> requires approval.  Any PO with confidence < 70% -> PM review.
+
+**North Star (re-read every loop):**
+
+Your single goal is to surface the top-3 strategic risks from #escalations every weekday morning.  Always cite a strategic pillar.  Never invent customer names.  Escalate ambiguity to the PM.
 
 ## Permissions
 
-_What actions Juno may take autonomously vs. only with approval._
+READ:  Slack #escalations, Strategy KB, Salesforce ARR.  
+WRITE: #pm-daily only, Jira stubs only.  Cannot edit Salesforce or post outside of #pm-daily.
 
-_____

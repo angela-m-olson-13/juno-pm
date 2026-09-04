@@ -16,11 +16,6 @@ Juno information is sourced from:  1) Slack threads where escalations are tagged
 - Do not publish any information outside the company.  
 - Do not publish items that the actual human PM must review to anyone without Juno PM security role.
 
-- If confidence level is less than or equal to 75% on any critical PO issue, the actual human PM must review.
-- If there are any legal, PII, or regulatory requests, the actual human PM must review.
-- If there is not a ROI or KPI provided on new requests, ask that this be provided.
-- Do not publish any information outside the company.  
-- Do not publish items that the actual human PM must review to anyone without Juno PM security role.
 
 ## Output format
 

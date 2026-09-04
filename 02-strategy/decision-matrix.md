@@ -11,9 +11,13 @@ Why now: roadmap discussions are driven by the loudest voice in Slack rather tha
 | Option | Cost | Speed | Control | Moat | Risk | Score |
 |---|---|---|---|---|---|---|
 | Build | 2 | 2 | 5 | 5 | 4 | 3.6 |
-| Buy / API | 5 | 5 | 2 | 1 | 2 | 3.0 |
+| Buy / API | 5 | 4 | 2 | 1 | 2 | 2.8 |
 | Fine-tune | 3 | 2 | 4 | 4 | 3 | 3.2 |
 
 ## Recommendation
 
-Build. Highest score because Control and Moat are the axes that matter for a ranking system leadership will trust. A generic Buy / API is cheaper and faster, but it cannot cite RocketShip sources, so it recreates the loudest-voice problem. Fine-tune is slower than we can wait and still needs the corpus Juno would retrieve live. Autonomy stays Copilot: Juno drafts the ranked backlog with citations; the PM approves before publish.
+Buy / API is faster, but would require customization on top to actually work against the source systems in Rocketship.  Therefore the speed is offset by the needs still to make it work against the datasources.
+Build will create a tailored solution, meeting the risk areas in a more customized manner, but does carry some risk in ensuring rules are built in to ensure output is actionable and drives correct outcomes.  
+Fine-tune will still need to overcome the specifics of the data sources and being able to cite and ascertain them properly.  
+
+Given the Build option allows the greatest control for the human PMs that can be continually tailored, this is the better option given buy speed is offset by the remaining customization needed.

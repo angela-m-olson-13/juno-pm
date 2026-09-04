@@ -2,36 +2,30 @@
 
 ## 1. Problem & Workflow
 
-The Problem: roadmap discussions at RocketShip are driven by the loudest voice in Slack rather than customer evidence. Priorities reverse weekly; stakeholder trust is eroding.
-
-Prevention: Juno explicitly prevents 'opinion-driven prioritization' - the bad decision of moving a feature up the backlog because someone in leadership posted strongly, instead of because the cited evidence outweighs the alternatives.
+The problem that currently exists is that there is lack of clarity on the right prioritization of work.  Priorities constantly shift as there are increasing PO and P1 tickets that stakeholders are trying to get roadmap work done within all while roadmap items are not pursued in proper prioritzed fashion.
+Juno will prevent the constant changing priorities that happen which create inefficiences and ensure fact-based conversations on priorities versus based on end user feelings and opinions.
 
 ## 2. Target Metrics
 
-Cycle time: reduce average weekly roadmap prioritization from 2 hours to 30 minutes (75% reduction).
-
-Leadership proof: under-15% rate of decisions reversed within 2 weeks, AND 90%+ of prioritised items have at least 2 cited sources from the corpus. Both metrics measurable in the first 30 days post-launch.
+Roadmap prioritization is 2 hours per week currently and should reduce to less than 30 minutes per week by the end of the first month (30 days).
+Tickets with PO and P1 are addressed 10% faster than current baseline.
 
 ## 3. Autonomy Level
 
-Choice: Copilot. Juno drafts a ranked backlog with written reasoning + source citations; the PM reviews and clicks 'approve' before publish.
-
-Explicitly avoiding: Agent. Letting Juno move sprint priorities or shift live dates without a human approval step is a one-way trust-erosion door - a single wrong call lets stakeholders dismiss the system permanently.
+Autonomy level would be Co-pilot to get the assistance needed to the human PM to synthesize data from a variety of sources.  Some aspects can be automated with guardrails provided and other items force human sign-off and action.
+Agent only would not be good to choose as there needs to be human in the loop for certain conditions - especially those items that relate to regulatory, PII, or legal matters or in the case where prioritization and confidence is not high enough to automate.  
 
 ## 4. Data & Model Approach
 
-Approach: Ground (RAG). We will ground the model in the RocketShip corpus - Slack #escalations, support tickets, interview notes, Notion product pages, Jira tickets - so every priority cites a source ID.
-
-Explicitly avoiding: a generic LLM (Buy). Without RAG grounding, Juno would hallucinate plausible-sounding priorities and invent customer signals that don't exist - the failure mode that kills trust fastest.
+The approach will be grounded (RAG).  This allows the Rocketship internal systems to be the sources for which Juno synthesizes its data.  Buying a LLM solution that is generic creates real risk of hallucination and incorrect outcomes.  The buy option would still force customization to Rocketship data sources to work properly.
 
 ## 5. Risks & Mitigations
 
-Risk: training data lag. Juno could over-weight whichever signal type was loudest in the past 60 days (e.g. enterprise escalations) and systematically under-weight quieter but more strategic signals (e.g. SMB churn). One quarter of skewed priorities and the roadmap drifts.
-
-Mitigation: a hard 'evidence balance' eval gate - reject any priority list where less than 20% of cited sources come from any one source type. Run weekly; PM reviews.
+A risk is that Juno is overly biased to certain inputs/sources to drive prioritization.  While PO and P1 tickets are important they must be balanced against roadmap items with KPI/ROI established that could have bigger benefit than some high support tickets.
+To avoid this situation the output has to balance across the sources when prioritizing.  The amount of items from each source should  be tracked and measured.  There should not be more than 30% from any one source over a period of 2 months.  If this occurs it must be flagged for the human PM to assess Juno guardrails and inform more specific prioritization.
 
 ## 6. V1 Scope
 
-In: ranking the existing backlog with cited evidence; surfacing under-cited items; flagging conflicts between Slack escalations and Jira priorities.
-
-Out: (1) hiring or headcount decisions, (2) customer-facing comms about why a feature was deprioritised. Both stay 100% with the human PM.
+The Juno solution should not:
+1) Create an communications to stakeholders automatically.  All communication is flagged to the PM to ultimately action.
+2) Where there are competing items from two different sources (i.e. Jira and Notion), Juno should not break the tie but highlight to PM to action.

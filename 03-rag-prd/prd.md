@@ -2,7 +2,7 @@
 
 ## Problem & user
 
-RocketShip PMs need evidence-based prioritization. Juno turns noisy Slack, tickets, and strategy docs into a ranked, cited backlog they can defend.
+Juno is a AI Associate PM that synthesizes information from disparate systems - Jira, Slack, Notion and interview transcipts into one place. The information is processed into insights and actions for the actual PM to review or to autonomously action.
 
 ## Solution overview
 

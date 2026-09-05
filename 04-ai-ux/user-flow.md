@@ -1,11 +1,10 @@
 # AI-Native User Flow · Juno
 
-
 ## Entry point
 
 **Signal type:** New message / transcript received
 
-A new P0 customer transcript is uploaded to the "Raw Input" column in Juno.
+A new customer transcript containing a PO concern is uploaded to the Raw data column in Juno to be processed.
 
 **What they see instantly**
 
@@ -13,11 +12,11 @@ A new P0 customer transcript is uploaded to the "Raw Input" column in Juno.
 
 ## The flow
 
-1. RAG retrieval over the RocketShip Strategy One-Pager (M3 KB), top-K = 6.
+1. 1. RAG retrieval over the RocketShip Strategy, top-K = 8.
 2. Comparison logic, does the transcript pain point map to a strategic pillar?
-3. Risk + alignment scoring, emit P0-P3 with a strategic-rationale citation.
+3. Risk + alignment scoring, output P0-P3 with a strategic-rationale citation.
 4. Confidence check, score < 30 → notRecommended; score ≥ 70 → P0/P1.
-2. "Scanning Strategy One-Pager…" → "Cross-referencing 1 transcript with 4 strategic pillars…" → "Synthesising priorities + drafting PRD section…"
+2. "Scanning Strategy One-Pager…" → "Cross-referencing 1 transcript with strategic pillars…" → "Synthesising priorities + drafting PRD section…"
 3. Path A (Strategy loaded) → grounded prioritization with citations.
 Path B (Strategy missing) → "Cautious mode", generic priorities tagged "low confidence" + nudge to load the strategy doc.
 
@@ -25,21 +24,31 @@ Path B (Strategy missing) → "Cautious mode", generic priorities tagged "low co
 
 **Placement:** Inline & Embedded
 
-Three Insight Cards in column 2 (Insights), each with: P0-P3 badge, evidence quote from the transcript, and a Strategic Traceability footer citing the strategic pillar. PRD draft in column 3 references the cards.
+There should be insights generated in the second column with a P0 to P3 priority assigned.  Each has source listed and the strategic pillar from the strategy referenced.
+There should be a draft PRD that appears in the last column.
 
-Value prop = augmentation (M2). The PM is the validator, they edit and approve, not create from blank. Inline keeps them in flow with the raw transcript on the left.
+Automation occurs with synthesizing the data and providing prioritization where it falls within established guardrails of the strategy guidelines.  When anything falls outside the human PM still reviews and approves.  Assistance to the human PM that they do not start from a blank slate.
 
 ## Fallbacks
 
 **Kill switch**
 
-Every Insight Card has a "Manual Override" button → re-tag P0-P3, edit the rationale, or mark notRecommended. PRD blocks are individually editable + regenerable.
+Every insight card generated can be adjusted in terms of priority (down or upgraded) along with clarity of actual issue and alignment to strategic pillar.
+The draft PRD can be overwitten / adjusted for clarity.  Some items could be manually removed due to priority overrides.
 
 **Training signal**
 
-Manual demote → logged as "strategic-alignment correction." 3+ similar overrides → flag the strategic pillar as ambiguous + tighten retrieval.
+Manual priority adjustments needs to be tracked.  More than 10% override in a day should trigger signal/statement to Juno to have strategy doc reviewed and refined.
 
 **Fail-safe**
 
-If RAG returns no match for a transcript pain → Juno tags the card "Outside current strategy" + amber warning. Never invents an alignment. PM can promote manually or send back for clarification.
+If any painpoint or support issue is raised that does not align to strategic pillars, it should be flagged to PM to assess and not attempted to assign a priority.
 
+## Self-review
+
+- [ ] Trigger fires on the earliest possible signal, no manual “Start AI” click.
+- [ ] At least one breadcrumb message turns latency into transparency.
+- [ ] Maneuver matches the M2 value prop (Automation / Augmentation / Insights / Personalization).
+- [ ] Every automated decision has a working kill switch.
+- [ ] Fail-safe path is explicit. No dead end with a bad AI result.
+- [ ] Hidden logic references M3 PRD specs (Top-K, latency target, knowledge base).

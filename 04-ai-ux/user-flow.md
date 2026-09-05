@@ -12,7 +12,7 @@ A new customer transcript containing a PO concern is uploaded to the Raw data co
 
 ## The flow
 
-1. 1. RAG retrieval over the RocketShip Strategy, top-K = 8.
+1. RAG retrieval over the RocketShip Strategy, top-K = 8.
 2. Comparison logic, does the transcript pain point map to a strategic pillar?
 3. Risk + alignment scoring, output P0-P3 with a strategic-rationale citation.
 4. Confidence check, score < 30 → notRecommended; score ≥ 70 → P0/P1.

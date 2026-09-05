@@ -41,9 +41,8 @@ PM reviews any P0 with confidence < 70% before posting. Daily 8:55am: PM has a 5
 
 ## Success & failure
 
-- **Done when:** - Success: top-3 risk list posted to #pm-daily.
+- **Done when:** - Success: top-3 risk list posted to PM Daily Report.
 - Failure: > 2 tool errors in a run → log + abort.
 - Escalation: confidence < 70% on any P0 → hand to PM.
 - Timeout: 90s wall clock → abort with partial output.
-- **Fails safe when:** Agent can READ Slack #escalations + Strategy KB + Salesforce ARR. Agent can WRITE to #pm-daily and create Jira stubs. Agent CANNOT edit Salesforce records, edit Jira tickets after creation, or post outside #pm-daily.
-
+- **Fails safe when:** Agent can READ Slack #escalations + Strategy + Salesforce ROI + Salesforce KPI. Agent can WRITE to PM Daily Report and create Jira stubs. Agent CANNOT edit Salesforce records, edit Jira tickets after creation, or post outside PM Daily Report.

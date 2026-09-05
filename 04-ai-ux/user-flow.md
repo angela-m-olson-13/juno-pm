@@ -44,11 +44,3 @@ Manual priority adjustments needs to be tracked.  More than 10% override in a da
 
 If any painpoint or support issue is raised that does not align to strategic pillars, it should be flagged to PM to assess and not attempted to assign a priority.
 
-## Self-review
-
-- [ ] Trigger fires on the earliest possible signal, no manual “Start AI” click.
-- [ ] At least one breadcrumb message turns latency into transparency.
-- [ ] Maneuver matches the M2 value prop (Automation / Augmentation / Insights / Personalization).
-- [ ] Every automated decision has a working kill switch.
-- [ ] Fail-safe path is explicit. No dead end with a bad AI result.
-- [ ] Hidden logic references M3 PRD specs (Top-K, latency target, knowledge base).

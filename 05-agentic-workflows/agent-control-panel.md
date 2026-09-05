@@ -1,32 +1,55 @@
-# Agent Control Panel · Juno
+# Agent Workflow Spec (AWSpec) · Juno
 
-## Autonomy level
+## Goal
 
-Agent can draft a P0 risk summary and Jira stub.  Agent cannot auto-close threads or direct message customers.
+PO are prioritized into a daily top 3 with source and strategic pillar sited.  
 
-## Controls
+**Primary actor:** Agent + Human-in-the-loop
 
-- **Kill switch:** max_steps: 6.  Abort if same tool fails 2x in a row.  Hard timeout:  90 seconds wall clock
-- **Rate / cost caps:** corpus.retrieve -> {chunks:{{text, source, score}], summary, confidence}.
-salesforce.lookup_arr -> {arr_usd, contract_end, churn_risk}.
-- **Escalate-on-stuck:** After 3 failed retrievals -> degrade to 'cautious mode' (no priorities - just thread links).  After 2 tool errors -> escalate to PM with full trace.
+## Trigger
 
-## Monitoring
+A new message for escalation thread is established for a PO critical priority item.  That thread should have at least 3 in the thread length within a 30 minute time span.  
 
-**Confidence thresholds (map to actions):**
+## Steps & tools
 
->= 80% -> auto-post to #pm-daily.  70 to 79% -> post to #pm-juno-review with @on-call-pm.  <70% -> require PM approval.
+**Pattern:** ReAct (single-agent reason-act-observe loop)
 
-**Checkpoints:**
+| Step | Action | Tool / model | Guardrail |
+|---|---|---|---|
+| 1 | Read the thread and customer id and any KPI/ROI impact sited. | slack.read_thread(id), read-only | Agent can READ Slack #escalations + Strategy document + Salesforce ROI + Salesforce KPI. Agent can WRITE to PM daily report and create Jira stubs. Agent CANNOT edit Salesforce records, edit Jira tickets after creation, or post outside PM daily report. |
+| 2 | RAG retrieval over the RocketShip Strategy, top-K = 8. | corpus.retrieve(query, k=6), read-only |  |
+| 3 | Score the risk and align with strategic pillar.  Priorities are P0-P3. | salesforce.lookup_roi(customer_id), read-only |  |
+| 4 | Draft summary card (transcript quote + strategic citation). | salesforce.lookup.kpi(customer_id), read-only |  |
+| 5 | Post to the daily PM report or provide to human PM for review if confidence does not meet threshold. | jira.create_stub(payload), write, requires confidence >= 75% |  |
+| 6 | _ | slack.post(channel, payload), write, restricted to PM daily report |  |
 
-Any thread mentioning 'churn', 'legal', or 'security' -> requires approval.  Any PO with confidence < 70% -> PM review.
+**Schemas**
 
-**North Star (re-read every loop):**
+- corpus.retrieve → {chunks:[{text,source,pillar,score}]}.
+- salesforce.lookup_roi → {roi_usd, contract_end, churn_risk}.
+- salesforce.lookup_kpi → {kpi_%, contract_end, churn_risk}.
+- jira.create_stub → {ticket_id, url, status}.
 
-Your single goal is to surface the top-3 strategic risks from #escalations every weekday morning.  Always cite a strategic pillar.  Never invent customer names.  Escalate ambiguity to the PM.
+**Memory (in or out of scope)**
 
-## Permissions
+- **Episodic:** In-scope: Juno outputs, retrieved information from source and any prioritization scores.  
+Lifetime:  end of run.
+- **Semantic:** In-scope: RocketShip strategy, Juno system prompt, and any PM preferences.  Lifetime: indefinite, with weekly refresh.
+Out of scope: Any legal contracts or PII information. 
+- **Working:** In-scope: Current thread, customer identifier, any KPI/ROI sited, confidence score and any specific source sites. 
+- **External:** Slack thread API (read), Notion thread API (read), Support tickets (read), RocketShip Strategy (read), #pm-daily channel (write), Jira (write, stub creation only).
 
-READ:  Slack #escalations, Strategy KB, Salesforce ARR.  
-WRITE: #pm-daily only, Jira stubs only.  Cannot edit Salesforce or post outside of #pm-daily.
+## Human-in-the-loop
 
+PM reviews any PO escalation with less than a 75% confidence level.  PM has 1 hour to review once notified, before it is published to the daily report.
+
+## Success & failure
+
+- **Done when:** - Success: Top 3 risks are published to the daily PM report.  
+- Failure: if any single tool error occurs, log the issue and report.  Stop agent.
+- Escalation: any items with less than 75% confidence need to be escalated to human PM for review.
+- Timeout: 90s wall clock → abort with partial output.
+- **Fails safe when:** Agent can READ Slack #escalations + Strategy document + Salesforce ROI + Salesforce KPI. Agent can WRITE to PM daily report and create Jira stubs. Agent CANNOT edit Salesforce records, edit Jira tickets after creation, or post outside PM daily report.
+
+- [ ] Every tool lists scope (read-only vs write) and a schema.
+- [ ] Read/write boundaries match the AI PRD (M3).

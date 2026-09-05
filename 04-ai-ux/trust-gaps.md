@@ -1,23 +1,18 @@
 # Trust-Gap Mitigations · Juno
 
-Feature: Juno PM - before a lot of RAG features are built in.
-
 ## Trust gaps
 
 | Gap | Where it shows up | User cost | Mitigation |
 |---|---|---|---|
-| **The Black-box Gap** | Can the user see why the AI decided? | Noticeable but recoverable (3/5 closed) | Citations to the actual source of the requested product features.  Actual quotes within transcripts. |
-| **The Hallucination Gap** | Could this confidently be wrong? | Noticeable but recoverable (3/5 closed) | Specify "watermarks" where there is low-confidence.  Provide supporting signal evidence from transcripts. |
-| **The Control Gap** | Can the user steer or stop? | Noticeable but recoverable (3/5 closed) | An undo button to the transcript provided. Able to regenerate after PM override of clarity on problem statement.  |
-| **The Intelligence Tax** | Is the latency / privacy / cognitive load worth the value? | Noticeable but recoverable (3/5 closed) | Clear indications of data privacy and data use, including memory.  Provide real-time process steps while processing data - status breadcrumbs. |
+| **The Black-box Gap** | Can the user see why the AI decided? | Closed (5/5 closed) | The actual source is sited for each item along with a portion of the statement or quote so it can be referenced.   |
+| **The Hallucination Gap** | Could this confidently be wrong? | Mostly closed, residual risk (4/5 closed) | Where there is low confidence in output, it should be clearly called out that there is low confidence in each instance card.  "Low confidence" should be clearly called out for these items. |
+| **The Control Gap** | Can the user steer or stop? | Closed (5/5 closed) | There is an undo button that the human PM can utilize, for which they could do a direct edit and process again. |
+| **The Intelligence Tax** | Is the latency / privacy / cognitive load worth the value? | Closed (5/5 closed) | There should be clear labels at all times on data privacy - this can be resolved in a privacy badge being displayed.  Memory in Juno could be utilized only if the human PM opts into this.  There are status updates provided as Juno is processing. |
 
 ## Highest-priority fix
 
-**The Black-box Gap** (3/5). Citations to the actual source of the requested product features.  Actual quotes within transcripts.
+**The Hallucination Gap** (4/5). Where there is low confidence in output, it should be clearly called out that there is low confidence in each instance card.  "Low confidence" should be clearly called out for these items.
 
 ## Verdict
 
-**Hold.** At least one gap is still open. Close before shipping or down-scope the feature until the gap is closed.
-
-
-_____
+**Shippable.** Trust posture passes the M4 readiness check. Confirm with eval data in M6 (golden set + guardrails).
